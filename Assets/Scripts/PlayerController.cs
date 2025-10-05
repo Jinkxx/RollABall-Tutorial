@@ -18,14 +18,14 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-         // Get and store the Rigidbody component attached to the player.
+        // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
 
     }
     // This function is called when a move input is detected.
     void OnMove(InputValue movementValue)
     {
-         // Convert the input value into a Vector2 for movement.
+        // Convert the input value into a Vector2 for movement.
         Vector2 movementVector = movementValue.Get<Vector2>();
         // Store the X and Y components of the movement.
         movementX = movementVector.x;
@@ -42,5 +42,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
